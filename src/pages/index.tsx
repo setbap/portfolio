@@ -174,13 +174,13 @@ const Index = (props: Props) => {
             <motion.div
                 style={{ direction: 'initial' }}
                 animate={pageDrawer}
-                className="w-full h-full flex flex-row- justify-start  absolute z-50 left-0 transform -translate-x-0 bg-opacity-25 bg-white">
+                className="w-full h-full flex flex-row- justify-start  absolute z-50 left-0 transform -translate-x-full bg-opacity-25 bg-white">
                 <motion.div
                     // drag="x"
-                    onDragEnd={handleDrawerDragEnd}
+                    // onDragEnd={handleDrawerDragEnd}
                     transition={DEFAULT_TRANSION}
-                    dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
-                    whileTap={{ cursor: "grabbing" }}
+                    // dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
+                    // whileTap={{ cursor: "grabbing" }}
                     // dragConstraints={{
                     //     left: 0,
                     //     right: 0
