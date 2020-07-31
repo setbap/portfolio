@@ -649,9 +649,8 @@ video {
   }
 }
 
-body {
-  direction: rtl
-}
+/* body {
+} */
 
 .primaty-bg {
   background-color: rgb(21, 32, 43);

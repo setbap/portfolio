@@ -1,19 +1,20 @@
 import React from 'react'
 import { motion, useMotionValue, useAnimation, PanInfo, Transition, } from 'framer-motion'
-import { AiTwotoneFire, AiOutlineSetting, AiOutlineClose, AiOutlineUserAdd, AiOutlineThunderbolt, AiOutlineQuestionCircle } from 'react-icons/ai'
+import { AiTwotoneFire, AiOutlineSetting, AiOutlineClose, AiOutlineThunderbolt, AiOutlineQuestionCircle } from 'react-icons/ai'
 import { BsArrowLeftRight, BsCardList, BsDisplay } from 'react-icons/bs'
 import { FcAdvertising } from 'react-icons/fc'
 import { FaRegUser } from 'react-icons/fa'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { IconType } from 'react-icons/lib'
-import { FiBookmark, FiLogOut, FiSettings } from 'react-icons/fi'
-import { RiChatSmile3Line, RiBarChartLine } from 'react-icons/ri'
+import { FiBookmark, FiLogOut, FiSettings, FiHome, FiBell, FiMail } from 'react-icons/fi'
+import { RiChatSmile3Line, RiBarChartLine, RiSearchLine } from 'react-icons/ri'
 import { MdOpenInNew, MdDataUsage } from 'react-icons/md'
+import Tweet from '../components/Tweet'
 interface Props {
 
 }
 const DEFAULT_TRANSION = { duration: 0.3, ease: [0.6, 0.01, -0.05, 0.9] }
-
+const tweet_text = `: Did you know that while holding ⇧, you can scrub left or right on an input label to increase or decrease the value based on your Big Nudge setting?`
 
 
 const Index = (props: Props) => {
@@ -21,31 +22,35 @@ const Index = (props: Props) => {
     const PAGES_ITEMS = [
         {
             body: (
-                <motion.div key={0} className="flex-1  h-full flex justify-center items-center">
-                    <span >one</span>
+                <motion.div key={0} className="flex-1 h-full top-0 flex flex-col overflow-y-auto justify-center items-start">
+                    <Tweet tweet_date="today" tweet_text={tweet_text} isReteet retweetParentId="sheeto" retweetParentName="mother of sheet" user_image="/me_icon.jpg" user_id={"1asda"} user_name="sina" tweet_image={"/tweet_image.jpg"} />
+                    <Tweet tweet_date="today" tweet_text={tweet_text} isReteet retweetParentId="sheeto" retweetParentName="mother of sheet" user_image="/me_icon.jpg" user_id={"1asda"} user_name="sina" tweet_image={"/tweet_image.jpg"} />
+                    <Tweet tweet_date="today" tweet_text={tweet_text} isReteet retweetParentId="sheeto" retweetParentName="mother of sheet" user_image="/me_icon.jpg" user_id={"1asda"} user_name="sina" tweet_image={"/tweet_image.jpg"} />
+                    <Tweet tweet_date="today" tweet_text={tweet_text} isReteet retweetParentId="sheeto" retweetParentName="mother of sheet" user_image="/me_icon.jpg" user_id={"1asda"} user_name="sina" tweet_image={"/tweet_image.jpg"} />
                 </motion.div>
-            ), title: "one"
+            ),
+            title: FiHome
         },
         {
             body: (
                 <motion.div key={1} className="flex-1  h-full flex justify-center items-center">
-                    <span >two</span>
+                    <span >search</span>
                 </motion.div>
-            ), title: "two"
+            ), title: RiSearchLine
         },
         {
             body: (
                 <motion.div key={2} className="flex-1  h-full flex justify-center items-center">
-                    <span >three</span>
+                    <span >notification</span>
                 </motion.div>
-            ), title: "three"
+            ), title: FiBell
         },
         {
             body: (
                 <motion.div key={3} className="flex-1  h-full flex justify-center items-center">
-                    <span >four</span>
+                    <span >message</span>
                 </motion.div>
-            ), title: "four"
+            ), title: FiMail
         },
     ]
     const PAGE_WIDTH = 375;
@@ -71,7 +76,7 @@ const Index = (props: Props) => {
 
     const changePage = async (page_number: number) => {
         controls.start({
-            x: TRANSITION_ITEM_WIDTH * page_number,
+            x: (-1) * TRANSITION_ITEM_WIDTH * page_number,
             transition: TRANSITION_CONFIG
         });
         await page_underline.start({
@@ -112,42 +117,42 @@ const Index = (props: Props) => {
         })
     }
 
-    const Item = ({ text, page_number }: { text: string; page_number: number }) => (
+    const Item = ({ Text, page_number }: { Text: IconType; page_number: number }) => (
         <motion.div
-            whileHover={{ color: "rgb(250,250,250)", backgroundColor: "rgb(100,123,230)" }}
+            whileHover={{ color: "orange", backgroundColor: "rgba(250,100,30,0.2)" }}
             onClick={() => { page.set(page_number); changePage(page.get()) }}
-            className="flex-1 bg-gray-900 cursor-pointer flex text-gray-400 justify-center items-center">
-            <span >{text}</span>
+            className="flex-1 bg-gray-900 cursor-pointer flex justify-center items-center">
+            <motion.span style={{ color: page_number === page.get() ? "orange" : "white" }}><Text /></motion.span>
         </motion.div>
     )
 
-    async function handleDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
-        const offset = info.offset.x;
-        const velocity = info.velocity.x;
-        if (offset > OFFSET_TO_SNAP || velocity > VELOCITY_TO_SNAP) {
-            if (page.get() < PAGE_COUNT - 1) {
-                page.set(page.get() + 1)
-                await changePage(page.get())
-            }
-        } else if (offset < -1 * OFFSET_TO_SNAP || velocity < -1 * VELOCITY_TO_SNAP) {
-            if (page.get() > 0) {
-                page.set(page.get() - 1)
-                await changePage(page.get())
-            }
-        } else {
-            await changePage(page.get())
-        }
-    }
+    // async function handleDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
+    //     const offset = info.offset.x;
+    //     const velocity = info.velocity.x;
+    //     if ((offset < OFFSET_TO_SNAP || velocity < VELOCITY_TO_SNAP) && (offset < 0 && velocity < 0)) {
+    //         if (page.get() < PAGE_COUNT - 1) {
+    //             page.set(page.get() + 1)
+    //             await changePage(page.get())
+    //         }
+    //     } else if ((offset > OFFSET_TO_SNAP || velocity > VELOCITY_TO_SNAP) && (offset > 0 && velocity > 0)) {
+    //         if (page.get() > 0) {
+    //             page.set(page.get() - 1)
+    //             await changePage(page.get())
+    //         }
+    //     } else {
+    //         await changePage(page.get())
+    //     }
+    // }
 
-    async function handleDrawerDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
-        const offset = info.offset.x;
-        const velocity = info.velocity.x;
-        if (offset > OFFSET_TO_SNAP / 2 || velocity > VELOCITY_TO_SNAP / 2) {
-            await openDrawer()
-        } else {
-            await closeDrawer()
-        }
-    }
+    // async function handleDrawerDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
+    //     const offset = info.offset.x;
+    //     const velocity = info.velocity.x;
+    //     if (offset > OFFSET_TO_SNAP / 2 || velocity > VELOCITY_TO_SNAP / 2) {
+    //         await openDrawer()
+    //     } else {
+    //         await closeDrawer()
+    //     }
+    // }
 
     async function handleBottomSheetDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
         const offset = info.offset.y;
@@ -170,9 +175,8 @@ const Index = (props: Props) => {
 
 
     return (
-        <motion.div style={{ width: PAGE_WIDTH, height: PAGE_HEIGHT }} className="h-screen relative bg-gray-200 mx-auto my-auto overflow-hidden  flex flex-col">
+        <motion.div style={{ width: PAGE_WIDTH, height: PAGE_HEIGHT }} className="relative bg-gray-200 mx-auto my-auto overflow-hidden  flex flex-col">
             <motion.div
-                style={{ direction: 'initial' }}
                 animate={pageDrawer}
                 className="w-full h-full flex flex-row- justify-start  absolute z-50 left-0 transform -translate-x-full bg-opacity-25 bg-white">
                 <motion.div
@@ -206,8 +210,8 @@ const Index = (props: Props) => {
 
                         {/* drawer user name */}
                         <div className="w-full h-12 flex flex-col  justify-start ">
-                            <div className="  text-sm text-white  mx-4 "><strong style={{ direction: 'initial' }}>apostrophe + Non</strong></div>
-                            <div className=" mx-4 text-xs text-gray-600 "><p className="" style={{ direction: 'initial' }} >@Round_AB</p></div>
+                            <div className="  text-sm text-white  mx-4 "><strong >apostrophe + Non</strong></div>
+                            <div className=" mx-4 text-xs text-gray-600 "><p className=""  >@Round_AB</p></div>
                         </div>
 
                         {/* drawer user flower */}
@@ -244,7 +248,7 @@ const Index = (props: Props) => {
             <motion.div
                 animate={pageBottomSheet}
 
-                className="w-full h-full flex flex-col justify-end  absolute z-50  transform translate-y-full  bg-opacity-25 bg-white">
+                className="w-full h-full flex flex-col justify-start  absolute z-50  transform translate-y-full  bg-opacity-25 bg-white">
                 <motion.div className="h-full w-full flex-1" onTap={closeBottomSheet} />
                 <motion.div
                     drag="y"
@@ -267,7 +271,7 @@ const Index = (props: Props) => {
                         <p className="text-white text-center font-bold">Latest Tweets show up as they happen</p>
                     </div>
                     <div className="w-full h-24 flex flex-col items-stretch justify-around">
-                        <div className="flex flex-row-reverse px-2 items-center  justify-start text-white">
+                        <div className="flex flex-row px-2 items-center  justify-start text-white">
                             <div style={{ transform: "rotateY(180deg)" }} className=" origin-center"><BsArrowLeftRight className=" mx-2  block text-gray-500" /></div>
                             <div className="text-left">
                                 <p className="text-gray-400 font-normal text-sm">Go back Home</p>
@@ -275,7 +279,7 @@ const Index = (props: Props) => {
 
                             </div>
                         </div>
-                        <div className="flex flex-row-reverse px-2  justify-start text-white">
+                        <div className="flex flex-row px-2  justify-start text-white">
                             <AiOutlineSetting className=" mx-2 text-gray-500" />
                             <p className="text-gray-400 font-normal text-xs">View content preferences</p>
                         </div>
@@ -287,34 +291,36 @@ const Index = (props: Props) => {
                     </div>
                 </motion.div>
             </motion.div>
-            <header className="w-full h-12 flex flex-row-reverse justify-between items-center bg-gray-900 border-b border-gray-700">
-                <motion.div onTap={openDrawer} className="rounded-full w-8 h-8  mx-4 overflow-hidden"><img src={'/me_icon.jpg'} width={"100%"} height={"100%"} alt={"user icon"} /></motion.div>
+
+            <header className="w-full h-12 flex flex-row justify-between items-center bg-gray-900 border-b border-gray-700">
+                <motion.div onTap={openDrawer} className="rounded-full w-8 h-8 mr-6 ml-4 overflow-hidden"><img src={'/me_icon.jpg'} width={"100%"} height={"100%"} alt={"user icon"} /></motion.div>
                 <div className="flex-1 text-left"> <span className="text-lg text-white">Lastest Tweets</span></div>
                 <motion.div onTap={openBottomSheet} className="rounded-full w-8 h-8   mx-4 overflow-hidden"><AiTwotoneFire className="w-8 h-8 text-red-600" /></motion.div>
             </header>
-            <motion.div className="flex-1 h-full overflow-hidden ">
+            <motion.div className="flex-1 overflow-hidden ">
                 <motion.div
-                    drag="x"
+                    // drag="x"
                     animate={controls}
-                    onDragEnd={handleDragEnd}
+                    // onDragEnd={handleDragEnd}
                     style={{ width: PAGE_WIDTH * PAGE_COUNT }}
-                    transition={DEFAULT_TRANSION}
-                    dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
+                    // transition={DEFAULT_TRANSION}
+                    // dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
                     whileTap={{ cursor: "grabbing" }}
-                    dragConstraints={{
-                        left: 0,
-                        right: 0
-                    }}
-                    className="flex flex-row  h-full relative bg-gray-900">
+                    // dragConstraints={{
+                    //     left: 0,
+                    //     right: 0
+                    // }}
+                    className="flex flex-row flex-1  h-full relative bg-gray-900">
+
 
                     {PAGES_BODY}
 
                 </motion.div>
             </motion.div>
 
-            <nav className="w-full h-12 flex flex-row-reverse items-stretch relative border-t-2 border-gray-700 bg-gray-900">
+            <nav className="w-full h-12 flex flex-row items-stretch relative border-t-2 border-gray-700 bg-gray-900">
                 {/* items builder */}
-                {HEADER_ITEMS.map((val, index) => <Item text={val} key={index} page_number={index} />)}
+                {HEADER_ITEMS.map((val, index) => <Item Text={val} key={index} page_number={index} />)}
                 {/* bottom bar */}
                 <motion.div animate={page_underline} style={{ width: SHOW_PAGE_LINE_WIDTH }} transition={DEFAULT_TRANSION} className="absolute bottom-0 left-0 rounded-full mb-1  h-1 bg-red-600"> </motion.div>
             </nav>
