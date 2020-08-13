@@ -8,8 +8,7 @@ export default function useWindowSize() {
     });
 
     function changeWindowSize() {
-        if (isSSR)
-            setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+        setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     }
 
     React.useEffect(() => {
@@ -18,7 +17,7 @@ export default function useWindowSize() {
         return () => {
             window.removeEventListener("resize", changeWindowSize);
         };
-    }, [isSSR]);
+    }, []);
 
     return windowSize;
 }
