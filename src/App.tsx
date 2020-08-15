@@ -167,7 +167,9 @@ function App() {
           <ImageModal onClick={() => dispatch({ type: "hide", payload: "" })} modal={modal} />
           <Header openBottomSheet={openBottomSheet} openDrawer={openDrawer} />
           <DesktopDrawer />
-          <Index dispatch={dispatch} />
+          <div className="max-w-3xl md:max-w-2xl h-full flex justify-start  pb-24 md:pb-12 bg-gray-900 mx-auto border-r-2 border-l-2 border-gray-700">
+            <Index dispatch={dispatch} />
+          </div>
           <Trend />
 
           <BottomNavigation
