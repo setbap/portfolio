@@ -33,10 +33,7 @@ const Tweet = ({ isReteet, tweet_text, user_image, user_name, user_id, tweet_dat
 
     return (
         <>
-
-
-            <motion.div variants={item} layout layoutId={user_id + user_image} className="w-full border-b border-gray-700 px-3  pt-2 text-white">
-
+            <motion.div {...{ onTap }} whileHover={{ cursor: "pointer", backgroundColor: 'rgb(35, 45, 62)' }} variants={item} layout layoutId={user_id + user_image} className="  w-full border-b border-gray-700 px-3  pt-2 text-white">
                 {/* show retweet */}
                 {isReteet && (
                     <div className="flex flex-row justify-start items-center  text-xs text-gray-700">
@@ -45,19 +42,16 @@ const Tweet = ({ isReteet, tweet_text, user_image, user_name, user_id, tweet_dat
                     </div>
 
                 )}
-
                 {/* tweet info */}
                 <div className="flex flex-row my-1 justify-start items-start  text-sm text-white">
-                    <div className=" w-32 rounded-full overflow-hidden mr-3 text-right"><img src={user_image} width={"100%"} alt="user icon" /></div>
-                    <div className="flex flex-col">
-
+                    <div className=" w-16 rounded-full overflow-hidden text-right"><img className="w-10 rounded-full " src={user_image} width={"100%"} alt="user icon" /></div>
+                    <div className="flex-1 flex flex-col">
                         {/* user name */}
                         <div className="text-left text-sm flex flex-row ">
                             <div className="mr-2 capitalize">{user_name}</div>
                             <div className="mr-2 text-gray-700 underline">@{user_id}</div>
                             <span className="text-gray-700">{tweet_date}</span>
                         </div>
-
                         <div className="text-left mb-2">
                             <span className="text-xs">{tweet_text}</span>
                         </div>

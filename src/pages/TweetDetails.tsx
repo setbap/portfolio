@@ -151,34 +151,6 @@ const TweetDetails = (props: Props) => {
         </motion.div>
     )
 
-    // async function handleDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
-    //     const offset = info.offset.x;
-    //     const velocity = info.velocity.x;
-    //     if ((offset < OFFSET_TO_SNAP || velocity < VELOCITY_TO_SNAP) && (offset < 0 && velocity < 0)) {
-    //         if (page.get() < PAGE_COUNT - 1) {
-    //             page.set(page.get() + 1)
-    //             await changePage(page.get())
-    //         }
-    //     } else if ((offset > OFFSET_TO_SNAP || velocity > VELOCITY_TO_SNAP) && (offset > 0 && velocity > 0)) {
-    //         if (page.get() > 0) {
-    //             page.set(page.get() - 1)
-    //             await changePage(page.get())
-    //         }
-    //     } else {
-    //         await changePage(page.get())
-    //     }
-    // }
-
-    // async function handleDrawerDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
-    //     const offset = info.offset.x;
-    //     const velocity = info.velocity.x;
-    //     if (offset > OFFSET_TO_SNAP / 2 || velocity > VELOCITY_TO_SNAP / 2) {
-    //         await openDrawer()
-    //     } else {
-    //         await closeDrawer()
-    //     }
-    // }
-
     async function handleBottomSheetDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
         const offset = info.offset.y;
         const velocity = info.velocity.y;
@@ -195,9 +167,6 @@ const TweetDetails = (props: Props) => {
             <div className="text-sm capitalize text-white "><p className="" >{title}</p></div>
         </div>)
     }
-
-
-
 
     return (
         <AnimatePresence>
@@ -319,7 +288,7 @@ const TweetDetails = (props: Props) => {
                     </motion.div>
                 </motion.div>
 
-                {(<motion.div
+                <motion.div
                     initial={false}
                     animate={modal.show ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
                     exit={{ opacity: 0, scale: 0, transition: { duration: 0.15 } }}
@@ -332,8 +301,7 @@ const TweetDetails = (props: Props) => {
                         <img src={modal.image} className="w-full h-48 object-cover" alt="" />
                     </motion.div>
 
-                </motion.div>)
-                }
+                </motion.div>
 
                 <header className="w-full h-12 flex flex-row justify-between items-center bg-gray-900 border-b border-gray-700">
                     <motion.div onTap={openDrawer} className="rounded-full w-8 h-8 mr-6 ml-4 overflow-hidden"><img src={'/me_icon.jpg'} width={"100%"} height={"100%"} alt={"user icon"} /></motion.div>
@@ -342,17 +310,10 @@ const TweetDetails = (props: Props) => {
                 </header>
                 <motion.div className="flex-1 overflow-hidden ">
                     <motion.div
-                        // drag="x"
                         animate={controls}
-                        // onDragEnd={handleDragEnd}
                         style={{ width: PAGE_WIDTH * PAGE_COUNT, resize: "vertical" }}
-                        // transition={DEFAULT_TRANSION}
-                        // dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
                         whileTap={{ cursor: "grabbing" }}
-                        // dragConstraints={{
-                        //     left: 0,
-                        //     right: 0
-                        // }}
+
                         className="flex flex-row flex-1  h-full relative bg-gray-900">
 
                         {PAGES_BODY}

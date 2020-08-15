@@ -17,6 +17,8 @@ import BottomSheet from './components/BottomSheet';
 import ImageModal from './components/ImageModal';
 import Header from './components/Header';
 import BottomNavigation from './components/BottomNavigation';
+import DesktopDrawer from './components/DesktopDrawer';
+import Trend from './components/Trend';
 
 const DEFAULT_TRANSION = { duration: 0.3, ease: [0.6, 0.01, -0.05, 0.9] }
 const initialState = { show: false, image: "" };
@@ -159,23 +161,15 @@ function App() {
     // <AnimatePresence exitBeforeEnter >
     <Router>
       <AnimatePresence>
-        <motion.div style={{ width: "100%", height: "100vh" }} className="relative bg-gray-200 mx-auto my-auto overflow-hidden  flex flex-col">
+        <motion.div style={{ width: "100%", height: "100vh" }} className="relative bg-gray-900 mx-auto my-auto overflow-hidden  flex flex-col">
           <Drawer closeDrawer={closeDrawer} pageDrawer={pageDrawer} DEFAULT_TRANSION={DEFAULT_TRANSION} />
           <BottomSheet handleBottomSheetDragEnd={handleBottomSheetDragEnd} closeBottomSheet={closeBottomSheet} pageBottomSheet={pageBottomSheet} DEFAULT_TRANSION={DEFAULT_TRANSION} />
           <ImageModal onClick={() => dispatch({ type: "hide", payload: "" })} modal={modal} />
           <Header openBottomSheet={openBottomSheet} openDrawer={openDrawer} />
-
-          {/* <motion.div className="flex-1 overflow-hidden "> */}
-          {/* <motion.div
-                animate={controls}
-                style={{ width: windowSize.width * PAGE_COUNT, resize: "vertical" }}
-                whileTap={{ cursor: "grabbing" }}
-                className="flex flex-row flex-1  h-full relative "
-              > */}
+          <DesktopDrawer />
           <Index dispatch={dispatch} />
-          {/* {PAGES_BODY} */}
-          {/* </motion.div> */}
-          {/* </motion.div> */}
+          <Trend />
+
           <BottomNavigation
             PAGE_COUNT={PAGE_COUNT}
             changePage={changePage}
