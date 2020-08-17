@@ -6,38 +6,63 @@ import { FiBookmark, FiSettings, FiLogOut } from 'react-icons/fi'
 import { AiOutlineThunderbolt, AiOutlineQuestionCircle } from 'react-icons/ai'
 import { MdOpenInNew, MdDataUsage } from 'react-icons/md'
 import { IconType } from 'react-icons/lib'
+import { AnimateSharedLayout, motion } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'
 
 interface Props {
-
+    HEADER_ITEMS: { icon: IconType, path: string, title: string }[];
 }
 
-const BigListItem = ({ Icon, title }: { Icon: IconType, title: string }) => {
-    return (<div className="h-10 flex flex-row md:mx-3 text-white text-center   text-base lg:justify-start justify-end  items-center">
-        <div className="   lg:mx-4 mx-px  lg:text-lg  "><Icon /></div>
-        <div className=" capitalize text-white  hidden lg:inline "><p className="" >{title}</p></div>
-    </div>)
+const BigListItem = ({ Icon, title, path, pathname }: { Icon: IconType, title: string, path: string, pathname: string }) => {
+    return (
+        <Link to={path}>
+            <motion.div
+                style={{ color: path === pathname ? "orange" : "white" }}
+                whileHover={{ backgroundColor: "rgba(250,90,20,0.3)", borderColor: "rgba(220,70,10,0.7)" }}
+                className={`h-10 mb-1 pr-2  rounded-full   flex flex-row md:px-4  text-center  border-transparent border-2   text-base lg:justify-start justify-end  items-center`}>
+                {path === pathname && <motion.div
+                    className="-ml-3  h-6 w-1 outline"
+                    layoutId="outline"
+                    initial={false}
+
+                    animate={{ backgroundColor: "orange" }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 300
+                    }}
+                />}
+                <div className={`  lg:mx-4 mx-auto  lg:text-lg  `}><Icon /></div>
+                <div className={` capitalize   hidden lg:inline `}><p className="" >{title}</p></div>
+            </motion.div></Link>)
 }
 
-const DesktopDrawer = (props: Props) => {
+const DesktopDrawer = ({ HEADER_ITEMS }: Props) => {
+    const { pathname } = useLocation();
+
     return (
         <div style={{ width: 'calc( 50% - 21rem )' }} className="absolute my-12  left-0">
 
-            <div style={{ maxWidth: '12rem' }} className=" mr-2  text-center rounded-lg hidden  mx-auto  md:flex flex-col">
-                <BigListItem Icon={FaRegUser} title={"profile"} />
-                <BigListItem Icon={BsCardList} title={"list"} />
-                <BigListItem Icon={RiChatSmile3Line} title={"topic"} />
-                <BigListItem Icon={FiBookmark} title={"bookmarks"} />
-                <BigListItem Icon={AiOutlineThunderbolt} title={"moments"} />
-                <div className="hidden lg:block  h-px bg-gray-800 " />
-                <BigListItem Icon={MdOpenInNew} title={"Twitter Ads"} />
-                <BigListItem Icon={RiBarChartLine} title={"analytics"} />
-                <div className="hidden lg:block w-full h-px bg-gray-800 " />
-                <BigListItem Icon={AiOutlineQuestionCircle} title={"help center"} />
-                <div className="hidden lg:block w-full h-px bg-gray-800 " />
-                <BigListItem Icon={MdDataUsage} title={"data saver"} />
-                <BigListItem Icon={BsDisplay} title={"display"} />
-                <div className="hidden lg:block w-full h-px bg-gray-800 " />
-                <BigListItem Icon={FiLogOut} title={"logout"} />
+            <div style={{ maxWidth: '12rem' }} className="  text-center rounded-lg hidden  mx-auto  md:flex flex-col">
+                <AnimateSharedLayout>
+                    {HEADER_ITEMS.map((val, index) => <BigListItem path={val.path} Icon={val.icon} key={index} title={val.title} pathname={pathname} />)}
+
+                    {/* <BigListItem Icon={FaRegUser} title={"profile"} />
+                    <BigListItem Icon={BsCardList} title={"list"} />
+                    <BigListItem Icon={RiChatSmile3Line} title={"topic"} />
+                    <BigListItem Icon={FiBookmark} title={"bookmarks"} />
+                    <BigListItem Icon={AiOutlineThunderbolt} title={"moments"} />
+                    <div className="hidden lg:block  h-px bg-gray-800 " />
+                    <BigListItem Icon={MdOpenInNew} title={"Twitter Ads"} />
+                    <BigListItem Icon={RiBarChartLine} title={"analytics"} />
+                    <div className="hidden lg:block w-full h-px bg-gray-800 " />
+                    <BigListItem Icon={AiOutlineQuestionCircle} title={"help center"} />
+                    <div className="hidden lg:block w-full h-px bg-gray-800 " />
+                    <BigListItem Icon={MdDataUsage} title={"data saver"} />
+                    <BigListItem Icon={BsDisplay} title={"display"} /> */}
+                    <div className="hidden lg:block w-full h-px bg-gray-800 " />
+                    {/* <BigListItem Icon={FiLogOut} title={"logout"} /> */}
+                </AnimateSharedLayout>
             </div>
         </div>
     )

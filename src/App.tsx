@@ -57,7 +57,7 @@ function App() {
       //     <Tweet tweet_date="today" tweet_text={tweet_text} retweetParentId="sheeto" retweetParentName="mother of sheet" user_image="/me_icon.jpg" user_id={"1asda"} onImageTap={() => dispatch({ type: "show", payload: "/tweet_image.jpg" })} user_name="sina" tweet_image={"/tweet_image.jpg"} />
       //   </motion.div>
       // ),
-      title: FiHome, path: "/"
+      title: "home", icon: FiHome, path: "/"
     },
     {
       body: (
@@ -65,21 +65,21 @@ function App() {
           <span >search</span>
         </motion.div>
       ),
-      title: RiSearchLine, path: "/search"
+      title: "search", icon: RiSearchLine, path: "/search"
     },
     {
       body: (
         <motion.div key={2} className="flex-1  h-full flex justify-center items-center">
           <span >notification</span>
         </motion.div>
-      ), title: FiBell, path: "/notification"
+      ), title: "notif", icon: FiBell, path: "/notification"
     },
     {
       body: (
         <motion.div key={3} className="flex-1  h-full flex justify-center items-center">
           <span >message</span>
         </motion.div>
-      ), title: FiMail, path: "/message"
+      ), title: "message", icon: FiMail, path: "/message"
 
     },
   ]
@@ -92,7 +92,7 @@ function App() {
   const TRANSITION_DURATION = 0.4
   const PAGE_COUNT = PAGES_ITEMS.length
   const PAGES_BODY = PAGES_ITEMS.map((val) => val.body)
-  const HEADER_ITEMS = PAGES_ITEMS.map((val) => ({ title: val.title, path: val.path }))
+  const HEADER_ITEMS = PAGES_ITEMS.map((val) => ({ icon: val.icon, title: val.title, path: val.path }))
   const TRANSITION_CONFIG: Transition = { duration: TRANSITION_DURATION }
 
 
@@ -168,7 +168,7 @@ function App() {
           <BottomSheet handleBottomSheetDragEnd={handleBottomSheetDragEnd} closeBottomSheet={closeBottomSheet} pageBottomSheet={pageBottomSheet} DEFAULT_TRANSION={DEFAULT_TRANSION} />
           <ImageModal onClick={() => dispatch({ type: "hide", payload: "" })} modal={modal} />
           <Header openBottomSheet={openBottomSheet} openDrawer={openDrawer} />
-          <DesktopDrawer />
+          <DesktopDrawer HEADER_ITEMS={HEADER_ITEMS} />
           <div className="max-w-3xl md:max-w-2xl h-full flex justify-start  pb-24 md:pb-12 bg-gray-900 mx-auto border-r-2 border-l-2 border-gray-700">
             <Switch>
               <Route exact path="/">

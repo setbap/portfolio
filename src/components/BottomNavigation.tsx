@@ -4,7 +4,7 @@ import { motion, MotionValue, AnimationControls, AnimateSharedLayout } from 'fra
 import { useLocation, useHistory } from 'react-router-dom';
 
 interface Props {
-    HEADER_ITEMS: { title: IconType, path: string }[];
+    HEADER_ITEMS: { icon: IconType, path: string, title: string }[];
     PAGE_COUNT: number;
     DEFAULT_TRANSION: {
         duration: number;
@@ -21,12 +21,12 @@ const BottomNavigation = ({ HEADER_ITEMS, PAGE_COUNT, DEFAULT_TRANSION, page, pa
     const { pathname } = useLocation();
     const history = useHistory()
 
-    const Item = ({ Text, path }: { Text: IconType; path: string }) => (
+    const Item = ({ Icon, path }: { Icon: IconType; path: string }) => (
         <motion.div
             whileHover={{ color: "orange", backgroundColor: "rgba(250,100,30,0.2)" }}
             onClick={() => { history.push(path) }}
             className="flex-1 bg-gray-900 cursor-pointer flex flex-col justify-center items-center">
-            <motion.div style={{ color: path === pathname ? "orange" : "white", marginBottom: path === pathname ? "0.25 rem" : 0 }}><Text /></motion.div>
+            <motion.div style={{ color: path === pathname ? "orange" : "white", marginBottom: path === pathname ? "0.25 rem" : 0 }}><Icon /></motion.div>
             {path === pathname && <motion.div
                 className="  h-1 mt-1 outline"
                 layoutId="outline"
@@ -46,7 +46,7 @@ const BottomNavigation = ({ HEADER_ITEMS, PAGE_COUNT, DEFAULT_TRANSION, page, pa
                 <div className="flex h-12 flex-row justify-center border-t-2 border-gray-700 relative mx-auto items-stretch max-w-3xl md:max-w-2xl ">
 
                     {/* items builder */}
-                    {HEADER_ITEMS.map((val, index) => <Item Text={val.title} key={index} path={val.path} />)}
+                    {HEADER_ITEMS.map((val, index) => <Item Icon={val.icon} key={index} path={val.path} />)}
                     {/* bottom bar */}
                     <motion.div animate={page_underline} style={{ width: `100/${PAGE_COUNT}` }} transition={DEFAULT_TRANSION} className="absolute bottom-0 left-0 rounded-full mb-1  h-1 bg-red-600"> </motion.div>
                 </div>
