@@ -22,7 +22,7 @@ const DesktopDrawer = (props: Props) => {
     return (
         <div style={{ width: 'calc( 50% - 21rem )' }} className="absolute my-12  left-0">
 
-            <div style={{ maxWidth: '12rem' }} className=" mr-2  text-center rounded-lg hidden  mx-auto   md:flex flex-col">
+            <div style={{ maxWidth: '12rem' }} className=" mr-2  text-center rounded-lg hidden  mx-auto  md:flex flex-col">
                 <BigListItem Icon={FaRegUser} title={"profile"} />
                 <BigListItem Icon={BsCardList} title={"list"} />
                 <BigListItem Icon={RiChatSmile3Line} title={"topic"} />

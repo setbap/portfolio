@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion, } from 'framer-motion'
 import Tweet from '../components/Tweet'
+import { useLocation, useHistory } from 'react-router-dom'
 interface Props {
     PAGE_WIDTH?: number;
     PAGE_HEIGHT?: number;
@@ -10,7 +11,7 @@ interface Props {
     }) => void
 
 }
-const tweet_text = `: Did you know that while holding ⇧, you can scrub left or right on an input label to increase or decrease the value based on your Big Nudge setting?`
+const tweet_text = `Did you know that while holding ⇧, you can scrub left or right on an input label to increase or decrease the value based on your Big Nudge setting?`
 
 
 const container = {
@@ -25,10 +26,11 @@ const container = {
 
 
 const Index = ({ dispatch }: Props) => {
+    const location = useHistory()
 
     return (
         <motion.div variants={container} initial="hidden" animate="show" key={0} className="flex-1  top-0 flex flex-col overflow-y-scroll  justify-start items-start">
-            <Tweet tweet_date="today" tweet_text={tweet_text} user_image="/me_icon.jpg" user_id={"1asda"} user_name="sina" />
+            <Tweet tweet_date="today" onTap={() => location.push("/detail/21")} tweet_text={tweet_text} user_image="/me_icon.jpg" user_id={"1asda"} user_name="sina" />
             <Tweet tweet_date="today" tweet_text={tweet_text} isReteet retweetParentId="sheeto" retweetParentName="mother of sheet" user_image="/me_icon.jpg" user_id={"1asda"} user_name="sina" />
             <Tweet tweet_date="today" tweet_text={tweet_text} retweetParentId="sheeto" retweetParentName="mother of sheet" user_image="/me_icon.jpg" user_id={"1asda"} onImageTap={() => dispatch({ type: "show", payload: "/tweet_image.jpg" })} user_name="sina" tweet_image={"/tweet_image.jpg"} />
             <Tweet tweet_date="today" tweet_text={tweet_text} retweetParentId="sheeto" retweetParentName="mother of sheet" user_image="/me_icon.jpg" user_id={"1asda"} onImageTap={() => dispatch({ type: "show", payload: "/tweet_image.jpg" })} user_name="sina" tweet_image={"/tweet_image.jpg"} />
