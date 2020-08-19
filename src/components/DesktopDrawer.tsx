@@ -21,7 +21,7 @@ const BigListItem = ({ Icon, title, path, pathname }: { Icon: IconType, title: s
                 whileHover={{ backgroundColor: "rgba(250,90,20,0.3)", borderColor: "rgba(220,70,10,0.7)" }}
                 className={`h-10 mb-1 pr-2  rounded-full   flex flex-row md:px-4  text-center  border-transparent border-2   text-base lg:justify-start justify-end  items-center`}>
                 {path === pathname && <motion.div
-                    className="-ml-3  h-6 w-1 outline"
+                    className="-ml-1  h-6 w-1 outline"
                     layoutId="outline"
                     initial={false}
 
@@ -43,7 +43,7 @@ const DesktopDrawer = ({ HEADER_ITEMS }: Props) => {
     return (
         <div style={{ width: 'calc( 50% - 21rem )' }} className="absolute my-12  left-0">
 
-            <div style={{ maxWidth: '12rem' }} className="  text-center rounded-lg hidden  mx-auto  md:flex flex-col">
+            <div style={{ maxWidth: '12rem' }} className="  text-center rounded-lg hidden  mx-auto lg:mr-0  md:flex flex-col">
                 <AnimateSharedLayout>
                     {HEADER_ITEMS.map((val, index) => <BigListItem path={val.path} Icon={val.icon} key={index} title={val.title} pathname={pathname} />)}
 
