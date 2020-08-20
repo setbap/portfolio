@@ -18,13 +18,12 @@ const container = {
 }
 
 const showLang = {
-    hidden: { opacity: 0.5,scale:0.2 },
-    show: {
+    hiddenx: { opacity: 0.5,scale:0.2 },
+    showx: {
         opacity: 1,
         scale:1,
         transition: {
-            staggerChildren: 0.9,
-            
+            staggerChildren: 0.2,
         }
     }
 }
@@ -49,18 +48,9 @@ const SkillBox = ({ title, precent }: { title: string, precent: number }) => {
 const ProgrammingBox = ({ title, frameworks }: { title: string, frameworks: string[] }) => {
     return (
         <motion.div variants={container} initial="hidden" animate="show" className="px-4 pb-2 re text-white w-full md:justify-around justify-start  md:items-center items-start flex  flex-col md:flex-row">
-            <div className="capitalize pr-3 font-bold ">{title}: </div>
+            <div className="capitalize w-32 font-bold ">{title}: </div>
             <div className="flex flex-row flex-wrap  my-3  w-9/12">
-                <motion.div variants={{
-    hiddenx: { opacity: 0.5,scale:0.2 },
-    showx: {
-        opacity: 1,
-        scale:1,
-        transition: {
-            staggerChildren: 0.2,
-        }
-    }
-}} initial="hiddenx" animate="showx" className=" flex flex-row flex-wrap w-7/12  sm:w-11/12 ">
+                <motion.div variants={showLang} initial="hiddenx" animate="showx" className=" flex flex-row flex-wrap w-7/12  sm:w-11/12 ">
     {frameworks.map((val,index) =>(<div className="border-2 rounded-full px-2 py-1 border-green-500 bg-green-700 mx-2 my-1" key={index}>{val}</div>)) }
                 </motion.div>
             </div>
@@ -83,11 +73,11 @@ function Skills({ }: Props): ReactElement {
             <SkillBox title={"speaking"} precent={30} />
             <SkillBox title={"listening"} precent={60} />
             <div className=" h-px bg-gray-700 w-full"></div>
-            <InfoBox title={"Programming lengauge  "}/>
+            <InfoBox title={"Programming Skills  "}/>
             <ProgrammingBox title={"nodeJs "} frameworks={["express", "mongooes","typeorm"]} />
             <ProgrammingBox title={"js (+ TS ❤) "} frameworks={["react", "react-native","nextJS","redux","MATERIAL-UI","ant-d" ]} />
             <ProgrammingBox title={"css (!lang)"} frameworks={["tailwindcss", "bootstrap" ]} />
-
+            <ProgrammingBox title={"database"} frameworks={["PostgreSQL", "Mongo" ]} />
             <ProgrammingBox title={"dart "} frameworks={["flutter" ]} />
             <ProgrammingBox title={"python"} frameworks={["Django" ]} />
 
