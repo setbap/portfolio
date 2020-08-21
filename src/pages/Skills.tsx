@@ -5,10 +5,10 @@ interface Props {
 
 }
 const container = {
-    hidden: { opacity: 0.5, translateY: 20 },
+    hidden: { opacity: 0.5, scale: 0.7 },
     show: {
         opacity: 1,
-        translateY: 0,
+        scale: 1,
         transition: {
             staggerChildren: 0.2,
 
@@ -17,22 +17,22 @@ const container = {
 }
 
 const showLang = {
-    hiddenx: { opacity: 0.5, scale: 0.2 },
+    hiddenx: { opacity: 0.5, scale: 0.9 },
     showx: {
         opacity: 1,
         scale: 1,
         transition: {
-            staggerChildren: 0.2,
+            staggerChildren: 0.1,
         }
     }
 }
 
 const SkillBox = ({ title, precent }: { title: string, precent: number }) => {
     return (
-        <motion.div className="p-4 re text-white w-full md:justify-around justify-start  md:items-center items-start flex  flex-col md:flex-row">
-            <div className="capitalize">{title} </div>
-            <div className="flex  my-3  w-9/12">
-                <div className="w-6/12 sm:w-8/12  h-3 bg-gray-500 rounded-lg ">
+        <motion.div className="p-4 px-12 text-white w-full md:justify-around justify-start  md:items-center items-start flex  flex-col md:flex-row">
+            <div className="capitalize w-40">{title} </div>
+            <div className="flex  my-3  w-full">
+                <div className="w-full mx-4  h-3 bg-gray-500 rounded-lg ">
                     <motion.div
                         transition={{ delay: 0.2, duration: 0.8, }}
                         initial={{ width: 40, backgroundColor: "#f00" }}
@@ -46,8 +46,8 @@ const SkillBox = ({ title, precent }: { title: string, precent: number }) => {
 
 const ProgrammingBox = ({ title, frameworks }: { title: string, frameworks: string[] }) => {
     return (
-        <motion.div variants={container} initial="hidden" animate="show" className="px-4 pb-2 re text-white w-full  justify-start  md:items-center items-start flex  flex-col md:flex-row">
-            <div className="capitalize md:w-40 w-32 font-bold ">{title}: </div>
+        <motion.div variants={container} className="px-4 py-4 re text-white w-full  justify-start  md:items-center items-start flex  flex-col md:flex-row">
+            <div className="capitalize w-40 font-semibold pl-8 ">{title}: </div>
             {/* <div className="flex flex-row flex-wrap  my-3 "> */}
             <motion.div variants={showLang} initial="hiddenx" animate="showx" className=" self-start flex flex-row flex-wrap ">
                 {frameworks.map((val, index) => (<div className="border-2 rounded-full px-2 py-1 border-green-500 bg-green-700 mx-2 my-1" key={index}>{val}</div>))}
@@ -58,7 +58,7 @@ const ProgrammingBox = ({ title, frameworks }: { title: string, frameworks: stri
 }
 
 const InfoBox = ({ title }: { title: string }) => (
-    <motion.div className="text-left  md:pl-10 pl-4 text-white text-lg mt-5 w-full  capitalize">
+    <motion.div variants={container} className="text-left  md:pl-10 pl-4 text-white text-lg mt-5 w-full  capitalize">
         {title}
     </motion.div>
 )

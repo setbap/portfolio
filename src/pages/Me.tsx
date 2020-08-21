@@ -6,7 +6,7 @@ interface Props {
 }
 
 const TimeLineItem = ({ title, desc, status, notShow }: { title: string, desc: string, status: "odd" | "even", notShow?: boolean }) => {
-    return (<div className="w-full">
+    return (<motion.div variants={me_container} className="w-full">
         <div className={`flex ${status === "odd" ? "flex-row" : "flex-row-reverse"} w-full  z-10`}>
             <div className="w-16 relative " >
                 <div className="mx-auto h-full w-2 bg-gray-800" />
@@ -22,7 +22,18 @@ const TimeLineItem = ({ title, desc, status, notShow }: { title: string, desc: s
             <div style={{ width: "calc(100% - 3.44rem )" }}
                 className={`h-2 bg-gray-800 mx-auto  ${status === "odd" ? "rounded-bl-full rounded-tr-full" : "rounded-br-full rounded-tl-full"}`} />
         }
-    </div>);
+    </motion.div>);
+}
+
+const me_container = {
+    hidden: { opacity: 0.5, translateY: -70 },
+    show: {
+        opacity: 1,
+        translateY: 0,
+        transition: {
+            staggerChildren: 0.2
+        }
+    }
 }
 
 const Me = ({ dispatch }: Props) => {
@@ -35,8 +46,8 @@ const Me = ({ dispatch }: Props) => {
 
 
     return (
-        <div ref={ref} className="w-full  overflow-y-scroll  justify-start items-start">
-            <motion.div style={{}} className="relative h-48 w-full ">
+        <motion.div variants={me_container} initial="hidden" animate="show" ref={ref} className="w-full  overflow-y-scroll  justify-start items-start">
+            <motion.div variants={me_container} className="relative h-48 w-full ">
                 <motion.div
                     style={{ scale: transforemd, translateY: transforemdY, left: '50%', translateX: "-50%", zIndex: 1000, top: "2rem" }}
                     className="h-24  absolute  w-24  rounded-full bg-green-500 transform  origin-top"
@@ -76,7 +87,7 @@ const Me = ({ dispatch }: Props) => {
             <motion.div className="h-48 w-full "></motion.div>
             <motion.div className="h-48 w-full "></motion.div>
             <motion.div className="h-48 w-full "></motion.div>
-        </div>
+        </motion.div>
     )
 }
 

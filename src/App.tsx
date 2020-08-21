@@ -22,6 +22,7 @@ import Trend from "./components/Trend";
 import Details from "./pages/Details";
 import Skills from "./pages/Skills";
 import Me from "./pages/Me";
+import ContactUs from "./pages/ContactUs";
 
 const DEFAULT_TRANSION = { duration: 0.3, ease: [0.6, 0.01, -0.05, 0.9] };
 const initialState = { show: false, image: "" };
@@ -79,7 +80,7 @@ function App() {
 
   const OFFSET_TO_SNAP = 100;
   const VELOCITY_TO_SNAP = 500;
-  const TRANSITION_DURATION = 0.4;
+  const TRANSITION_DURATION = 0.1;
   const PAGE_COUNT = PAGES_ITEMS.length;
   const HEADER_ITEMS = PAGES_ITEMS.map((val) => ({
     icon: val.icon,
@@ -191,7 +192,7 @@ function App() {
                 <Me dispatch={dispatch} />
               </Route>
               <Route exact path="/message">
-                <Details dispatch={dispatch} />
+                <ContactUs />
               </Route>
             </Switch>
           </div>

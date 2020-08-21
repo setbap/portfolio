@@ -35,7 +35,7 @@ const BottomNavigation = ({ HEADER_ITEMS, PAGE_COUNT, DEFAULT_TRANSION, page, pa
                 transition={{
                     type: "spring",
                     stiffness: 500,
-                    damping: 300
+                    damping: 55
                 }}
             />}
         </motion.div>

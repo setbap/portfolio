@@ -29,7 +29,7 @@ const BigListItem = ({ Icon, title, path, pathname }: { Icon: IconType, title: s
                     transition={{
                         type: "spring",
                         stiffness: 500,
-                        damping: 300
+                        damping: 55
                     }}
                 />}
                 <div className={`  lg:mx-4 mx-auto  lg:text-lg  `}><Icon /></div>
@@ -46,22 +46,6 @@ const DesktopDrawer = ({ HEADER_ITEMS }: Props) => {
             <div style={{ maxWidth: '12rem' }} className="  text-center rounded-lg hidden  mx-auto lg:mr-0  md:flex flex-col">
                 <AnimateSharedLayout>
                     {HEADER_ITEMS.map((val, index) => <BigListItem path={val.path} Icon={val.icon} key={index} title={val.title} pathname={pathname} />)}
-
-                    {/* <BigListItem Icon={FaRegUser} title={"profile"} />
-                    <BigListItem Icon={BsCardList} title={"list"} />
-                    <BigListItem Icon={RiChatSmile3Line} title={"topic"} />
-                    <BigListItem Icon={FiBookmark} title={"bookmarks"} />
-                    <BigListItem Icon={AiOutlineThunderbolt} title={"moments"} />
-                    <div className="hidden lg:block  h-px bg-gray-800 " />
-                    <BigListItem Icon={MdOpenInNew} title={"Twitter Ads"} />
-                    <BigListItem Icon={RiBarChartLine} title={"analytics"} />
-                    <div className="hidden lg:block w-full h-px bg-gray-800 " />
-                    <BigListItem Icon={AiOutlineQuestionCircle} title={"help center"} />
-                    <div className="hidden lg:block w-full h-px bg-gray-800 " />
-                    <BigListItem Icon={MdDataUsage} title={"data saver"} />
-                    <BigListItem Icon={BsDisplay} title={"display"} /> */}
-                    <div className="hidden lg:block w-full h-px bg-gray-800 " />
-                    {/* <BigListItem Icon={FiLogOut} title={"logout"} /> */}
                 </AnimateSharedLayout>
             </div>
         </div>
