@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react'
-import { motion, useViewportScroll, useElementScroll, useTransform } from 'framer-motion'
+import React, { useRef } from 'react'
+import { motion, useElementScroll, useTransform } from 'framer-motion'
 
 interface Props {
     dispatch: (value: { type: "hide" | "show"; payload: string }) => void;
@@ -82,11 +82,8 @@ const Me = ({ dispatch }: Props) => {
             <TimeLineItem title="title" status="even" desc="rem esse facilis deleniti quo mollitia, laudantium unde sequi repellat obcaecati qui? Nemo amet perspiciatis, ratione labore doloribus suscipit enim!" />
             <TimeLineItem title="title" status="odd" notShow desc="rem esse facilis deleniti quo mollitia, laudantium unde sequi repellat obcaecati qui? Nemo amet perspiciatis, ratione labore doloribus suscipit enim!" />
 
-            <motion.div className="h-48 w-full bg-gray-800 "></motion.div>
-            <motion.div className="h-48 w-full "></motion.div>
-            <motion.div className="h-48 w-full "></motion.div>
-            <motion.div className="h-48 w-full "></motion.div>
-            <motion.div className="h-48 w-full "></motion.div>
+            <motion.div className="text-center bg-gray-800 text-orange-600 text-5xl capitalize font-thin mx-auto py-6"> this is me</motion.div>
+
         </motion.div>
     )
 }

@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import Index from "./pages";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {
   AnimatePresence,
   motion,
