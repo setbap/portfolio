@@ -52,7 +52,7 @@ const Me = ({ dispatch }: Props) => {
                     style={{ scale: transforemd, translateY: transforemdY, left: '50%', translateX: "-50%", zIndex: 1000, top: "2rem" }}
                     className="h-24  absolute  w-24  rounded-full bg-green-500 transform  origin-top"
                 >
-                    <img src="/tweet_image.jpg" alt="my image" className=" rounded-full w-24 h-24  border-4 border-orange-600" />
+                    <img src="/tweet_image.jpg" alt="my profile" className=" rounded-full w-24 h-24  border-4 border-orange-600" />
                     <div className="text-white text-center mt-4">Sina Ebrahimi</div>
                     <div className="text-white text-center mt-2">@setbap</div>
                 </motion.div>

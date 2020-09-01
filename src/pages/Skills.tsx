@@ -63,7 +63,7 @@ const InfoBox = ({ title }: { title: string }) => (
     </motion.div>
 )
 
-function Skills({ }: Props): ReactElement {
+function Skills(): ReactElement {
     return (
         <motion.div variants={container} initial="hidden" animate="show" key={0} className="flex-1 w-full   top-0 flex flex-col overflow-y-scroll  justify-start items-start">
             <InfoBox title={"English lengauge Skills"} />

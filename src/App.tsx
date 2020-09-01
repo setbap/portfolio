@@ -1,33 +1,34 @@
-import React, { useReducer } from "react";
-import Index from "./pages";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {
   AnimatePresence,
   motion,
-  Transition,
+  PanInfo, Transition,
   useAnimation,
-  useMotionValue,
-  PanInfo,
+  useMotionValue
 } from "framer-motion";
-import useWindowSize from "./hook/useWindows";
-import { FiHome, FiBell, FiMail } from "react-icons/fi";
+import React, { useReducer } from "react";
+import { FiBell, FiHome, FiMail } from "react-icons/fi";
 import { RiSearchLine } from "react-icons/ri";
-import Drawer from "./components/Drawer";
-import BottomSheet from "./components/BottomSheet";
-import ImageModal from "./components/ImageModal";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import './app.css';
 import BottomNavigation from "./components/BottomNavigation";
+import BottomSheet from "./components/BottomSheet";
 import DesktopDrawer from "./components/DesktopDrawer";
+import Drawer from "./components/Drawer";
+import Header from "./components/Header";
+import ImageModal from "./components/ImageModal";
 import Trend from "./components/Trend";
-import Details from "./pages/Details";
-import Skills from "./pages/Skills";
-import Me from "./pages/Me";
+import useWindowSize from "./hook/useWindows";
+import Index from "./pages";
 import ContactUs from "./pages/ContactUs";
+import Details from "./pages/Details";
+import Me from "./pages/Me";
+import Skills from "./pages/Skills";
+
 
 const DEFAULT_TRANSION = { duration: 0.3, ease: [0.6, 0.01, -0.05, 0.9] };
 const initialState = { show: false, image: "" };
 function showModalReducer(
-  state: typeof initialState,
+  _: typeof initialState,
   action: { type: "show" | "hide"; payload: string }
 ) {
   switch (action.type) {
@@ -39,15 +40,7 @@ function showModalReducer(
       throw new Error();
   }
 }
-const container = {
-  hidden: { opacity: 0.5 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
+
 
 function App() {
   const windowSize = useWindowSize();

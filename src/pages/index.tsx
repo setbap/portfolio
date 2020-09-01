@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion, } from 'framer-motion'
 import Tweet from '../components/Tweet'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 interface Props {
     PAGE_WIDTH?: number;
     PAGE_HEIGHT?: number;
