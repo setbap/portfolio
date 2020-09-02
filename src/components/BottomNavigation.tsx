@@ -41,7 +41,7 @@ const BottomNavigation = ({ HEADER_ITEMS, PAGE_COUNT, DEFAULT_TRANSION, page, pa
         </motion.div>
     )
     return (
-        <nav className="w-full h-12 md:hidden  block  absolute bottom-0  bg-transparent">
+        <nav className="w-full h-12 md:hidden  block  fixed bottom-0  bg-transparent">
             <AnimateSharedLayout>
                 <div className="flex h-12 flex-row justify-center border-t-2 border-gray-700 relative mx-auto items-stretch max-w-3xl md:max-w-2xl ">
 
